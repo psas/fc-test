@@ -27,7 +27,6 @@ class FrontEndWebSocket(tornado.websocket.WebSocketHandler):
             self.clients.append(self)
 
     def on_message(self, message):
-        #print '.',
         q.put([message])
 
     def on_close(self):

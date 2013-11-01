@@ -1,6 +1,7 @@
 import threading
 import socket
 import struct
+import time
 import json
 from random import gauss
 
@@ -57,7 +58,6 @@ class SensorDevice(threading.Thread):
         return p
 
     def run(self):
-        self.ADISsocket.connect(('127.0.0.1', 36000))
         while (not self._stop.is_set()):
             while not self.queue.empty():
                 for x in self.queue.get():
@@ -73,7 +73,8 @@ class SensorDevice(threading.Thread):
                     packet  = ADIS_Header.pack('ADIS', 0, 0, ADIS_Message.size)
                     packet += ADIS_Message.pack(*v)
 
-                    self.ADISsocket.send(packet)
+                    self.ADISsocket.sendto(packet, ('127.0.0.1', 36000))
+            time.sleep(0.01)
 
     def stop(self):
         self._stop.set()
