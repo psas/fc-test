@@ -2,11 +2,15 @@
 import tornado.web
 import tornado.websocket
 import tornado.ioloop
+import ADIS
+import Queue
 import os
 
 static_path = os.path.join(os.path.dirname(__file__), 'static')
 template_path = os.path.join(os.path.dirname(__file__), 'templates')
 
+# queue for placing messages upstream
+q = Queue.Queue()
 
 class MainHandler(tornado.web.RequestHandler):
 
@@ -23,7 +27,8 @@ class FrontEndWebSocket(tornado.websocket.WebSocketHandler):
             self.clients.append(self)
 
     def on_message(self, message):
-        print message
+        #print '.',
+        q.put([message])
 
     def on_close(self):
         if self in self.clients:
@@ -38,8 +43,14 @@ if __name__ == "__main__":
             (r'/ws', FrontEndWebSocket),
             (r'/(.*)', tornado.web.StaticFileHandler, dict(path=static_path)),
         ], template_path=template_path, static_path=static_path)
-
-    # listen
     application.listen(5000)
-    ioloop = tornado.ioloop.IOLoop.instance()
-    ioloop.start()
+
+    # Fake ADIS device
+    adis = ADIS.SensorDevice(q)
+
+    # threads
+    try:
+        adis.start()
+        tornado.ioloop.IOLoop.instance().start()
+    except KeyboardInterrupt, SystemExit:
+        adis.stop()
