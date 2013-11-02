@@ -40,10 +40,10 @@
   <h1>PSAS FC Test Framework</h1>
   <hr />
   <form class="row" method="post">
-   <div class="col-lg-5 col-md-6 well devices">
+   <div class="col-lg-5 col-sm-6 well devices">
     <h4>Sensor Board</h4>
 
-    <div class="col-lg-5 col-md-5">
+    <div class="col-lg-5 col-sm-6">
      {% if conn %}
         <button type="submit" name="connectsensor" class="btn btn-block btn-success" disabled="disabled" value="connect">Connected</button>
         <button type="submit" name="connectsensor" class="btn btn-block btn-default" value="connect">Disconnect</button>
@@ -53,8 +53,8 @@
      {% end %}
     </div>
 
-    <div class="col-lg-7 col-md-7">
-    <p>Data Source:</p>
+    <div class="col-lg-7 col-sm-6">
+    <p class="hidden-xs">Data Source:</p>
     <div class="radio">
       <label>
         <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
@@ -74,7 +74,7 @@
   </form>
   <hr />
 
-  <div class="col-lg-3 col-md-4  events">
+  <div class="col-lg-3 col-sm-4  events">
    <h3>FCF Events</h3>
    <form method="post">
      <ul>
@@ -94,7 +94,7 @@
    </form>
   </div>
 
-  <div id="table-wrapper" class="col-lg-9 col-md-8">
+  <div id="table-wrapper" class="col-lg-9 col-sm-8">
    <div id="table-scroll">
     <table>
      <thead>
