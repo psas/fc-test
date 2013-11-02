@@ -11,11 +11,16 @@ template_path = os.path.join(os.path.dirname(__file__), 'templates')
 # Fake ADIS device
 adis = ADIS.SensorDevice()
 
+# index page
 class MainHandler(tornado.web.RequestHandler):
-
     def get(self):
-        self.render('index.html')
+        buttons = ['a', 'b']
+        self.render('index.html', buttons=buttons)
 
+# mobile page
+class MobileHandler(tornado.web.RequestHandler):
+    def get(self):
+        self.render('mobile.html')
 
 class FrontEndWebSocket(tornado.websocket.WebSocketHandler):
 
@@ -38,8 +43,8 @@ if __name__ == "__main__":
     # setup
     application = tornado.web.Application([
             (r'/', MainHandler),
-            (r'/ws', FrontEndWebSocket),
-            (r'/(.*)', tornado.web.StaticFileHandler, dict(path=static_path)),
+            (r'/mobile', MobileHandler),
+            (r'/ws', FrontEndWebSocket)
         ], template_path=template_path, static_path=static_path)
     application.listen(5000)
 
