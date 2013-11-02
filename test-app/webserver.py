@@ -6,6 +6,7 @@ import e407_sensor as ADIS
 import fc_comm as FC
 import os
 import datetime
+import config
 
 static_path = os.path.join(os.path.dirname(__file__), 'static')
 template_path = os.path.join(os.path.dirname(__file__), 'templates')
@@ -46,6 +47,7 @@ class MobileHandler(tornado.web.RequestHandler):
     def get(self):
         self.render('mobile.html')
 
+
 class FrontEndWebSocket(tornado.websocket.WebSocketHandler):
 
     clients = []
@@ -70,7 +72,7 @@ if __name__ == "__main__":
             (r'/mobile', MobileHandler),
             (r'/ws', FrontEndWebSocket)
         ], template_path=template_path, static_path=static_path)
-    application.listen(5000)
+    application.listen(config.WEBSERVICE_PORT)
 
     # Start
     tornado.ioloop.IOLoop.instance().start()

@@ -1,7 +1,5 @@
 import socket
-
-FC_IP = '127.0.0.1'
-FC_LISTEN_PORT = 36000
+import config
 
 def SendToFC(message, port):
     sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -9,7 +7,7 @@ def SendToFC(message, port):
     sock.settimeout(0.1)
 
     try:
-        sock.sendto(message, (FC_IP, FC_LISTEN_PORT))
+        sock.sendto(message, (config.FC_IP, config.FC_LISTEN_PORT))
         data, remote_addr = sock.recvfrom(4096)
     except:
         data = None
@@ -18,30 +16,30 @@ def SendToFC(message, port):
 
     return data
 
+# Define actions:
 def action_ARM():
-    return SendToFC('#YOLO', 35666)
+    return SendToFC('#YOLO', config.FC_TALK_ARM)
 
 def action_SAFE():
-    return SendToFC('#SAFE', 35666)
+    return SendToFC('#SAFE', config.FC_TALK_ARM)
 
 def action_Override_SLOCK():
-    return SendToFC('DI_SLOCK', 35666)
+    return SendToFC('DI_SLOCK', config.FC_TALK_ARM)
 
 def action_Enable_SLOCK():
-    return SendToFC('EN_SLOCK', 35666)
+    return SendToFC('EN_SLOCK', config.FC_TALK_ARM)
 
 def action_Enable_Servo():
-    return SendToFC('ENABLE', 35667)
+    return SendToFC('ENABLE', config.FC_TALK_SERVO)
 
 def action_Disable_Servo():
-    return SendToFC('DISABLE', 35667)
+    return SendToFC('DISABLE', config.FC_TALK_SERVO)
 
 def event_OpenLD():
-    return SendToFC(chr(1), 35004)
+    return SendToFC(chr(1), config.ROLL_TX_PORT)
 
 def event_CloseLD():
-    return SendToFC(chr(0), 35004)
-
+    return SendToFC(chr(0), config.ROLL_TX_PORT)
 
 
 actions = [
