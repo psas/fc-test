@@ -3,12 +3,38 @@
  <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+
+    #table-wrapper {
+        position:relative;
+    }
+
+    #table-scroll {
+        height:400px;
+        overflow:auto;  
+        margin-top:20px;
+    }
+
+    #table-wrapper table {
+        width:100%;
+    
+    }
+
+    #table-wrapper table thead th .text {
+        position:absolute;   
+        top:-20px;
+        z-index:2;
+        height:20px;
+        width:35%;
+    }
+  </style>
   <title>PSAS FC Test Framework</title>
  </head>
  <body>
   <h1>PSAS FC Test Framework</h1>
   <hr />
   <p><a href="/mobile">Mobile Test Data Generator</a></p>
+
   <h3>FC Events</h3>
   <form method="post">
     <ul>
@@ -17,6 +43,7 @@
       {% end %}
     </ul>
   </form>
+
   <h3>Hardware Events</h3>
   <form method="post">
     <ul>
@@ -25,6 +52,29 @@
       {% end %}
     </ul>
   </form>
+
+  <div id="table-wrapper">
+   <div id="table-scroll">
+    <table>
+     <thead>
+      <tr>
+       <th>Time</th>
+       <th>Event</th>
+       <th>FC Response</th>
+      </tr>
+     </thead>
+     <tbody>
+        {% for entry in log %}
+            <tr>
+              <td>{{ entry[0] }}</td>
+              <td>{{ entry[1] }}</td>
+              <td>{{ entry[2] }}</td>
+            </tr>
+        {% end %}
+     </tbody>
+    </table>
+   </div>
+  </div>
 
  </body>
 </html>

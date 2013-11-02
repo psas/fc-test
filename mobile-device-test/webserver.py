@@ -5,6 +5,7 @@ import tornado.ioloop
 import ADIS
 import FC
 import os
+import datetime
 
 static_path = os.path.join(os.path.dirname(__file__), 'static')
 template_path = os.path.join(os.path.dirname(__file__), 'templates')
@@ -12,11 +13,12 @@ template_path = os.path.join(os.path.dirname(__file__), 'templates')
 # Fake ADIS device
 adis = ADIS.SensorDevice()
 
+event_log = []
 
 # index page
 class MainHandler(tornado.web.RequestHandler):
     def get(self):
-        self.render('index.html', actions=FC.actions, events=FC.events)
+        self.render('index.html', actions=FC.actions, events=FC.events, log=event_log)
 
     def post(self):
         abtn = self.get_argument('action', None)
@@ -26,21 +28,17 @@ class MainHandler(tornado.web.RequestHandler):
             action = FC.actions[int(abtn)].get('run')
             if action is not None:
                 message = action()
-                if message is not None:
-                    print message
-                else:
-                    print "no responce"
+                t = datetime.datetime.now().strftime('%H:%M:%S')
+                event_log.append((t, FC.actions[int(abtn)].get('action'), message))
 
         if ebtn is not None:
             action = FC.events[int(ebtn)].get('run')
             if action is not None:
                 message = action()
-                if message is not None:
-                    print message
-                else:
-                    print "no responce"
+                t = datetime.datetime.now().strftime('%H:%M:%S')
+                event_log.append((t, FC.events[int(ebtn)].get('action'), message))
 
-        self.render('index.html', actions=FC.actions, events=FC.events)
+        self.render('index.html', actions=FC.actions, events=FC.events, log=event_log)
 
 
 # mobile page
