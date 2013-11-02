@@ -45,15 +45,15 @@ def event_CloseLD():
 
 
 actions = [
-    {'action': "ARM", 'run': action_ARM},
-    {'action': "SAFE", 'run': action_SAFE},
-    {'action': "Override SLOCK", 'run': action_Override_SLOCK},
-    {'action': "Enable SLOCK", 'run': action_Enable_SLOCK},
-    {'action': "Enable Servo", 'run': action_Enable_Servo},
-    {'action': "Disable Servo", 'run': action_Disable_Servo},
+    {'action': "ARM", 'btn': "btn-danger", 'run': action_ARM},
+    {'action': "SAFE", 'btn': "btn-success", 'run': action_SAFE},
+    {'action': "Override SLOCK", 'btn': "btn-warning", 'run': action_Override_SLOCK},
+    {'action': "Enable SLOCK", 'btn': "btn-default", 'run': action_Enable_SLOCK},
+    {'action': "Enable Servo", 'btn': "btn-warning", 'run': action_Enable_Servo},
+    {'action': "Disable Servo", 'btn': "btn-default", 'run': action_Disable_Servo},
 ]
 
 events = [
-    {'action': "Simulate Launch Detect", 'run': event_OpenLD},
-    {'action': "Simulate Launch Detect Reattach", 'run': event_CloseLD},
+    {'action': "Launch Detect", 'btn': "btn-danger",'run': event_OpenLD},
+    {'action': "Launch Detect Reattach", 'btn': "btn-default",'run': event_CloseLD},
 ]

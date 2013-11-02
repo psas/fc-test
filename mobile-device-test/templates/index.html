@@ -3,11 +3,13 @@
  <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="/static/css/bootstrap.min.css" rel="stylesheet">
   <style>
-
-    #table-wrapper {
-        position:relative;
-    }
+    body { padding: 30px; }
+    a {  color: #0000ff; }
+    form ul { list-style: none; padding-left: 20px; }
+    form li { margin: 5px 0; }
+    #table-wrapper { position:relative; }
 
     #table-scroll {
         height:400px;
@@ -15,18 +17,17 @@
         margin-top:20px;
     }
 
-    #table-wrapper table {
-        width:100%;
-    
-    }
+    #table-wrapper table { width:100%; }
 
     #table-wrapper table thead th .text {
         position:absolute;   
         top:-20px;
         z-index:2;
         height:20px;
-        width:35%;
     }
+
+    .time { width: 100px; }
+    .command { width: 33%; }
   </style>
   <title>PSAS FC Test Framework</title>
  </head>
@@ -35,38 +36,40 @@
   <hr />
   <p><a href="/mobile">Mobile Test Data Generator</a></p>
 
-  <h3>FC Events</h3>
-  <form method="post">
-    <ul>
-      {% for i, action in enumerate(actions) %}
-        <li><button name="action" type="submit" value="{{ i }}">{{ action['action'] }}</button></li>
-      {% end %}
-    </ul>
-  </form>
+  <div class="col-lg-2">
+   <h3>FCF Events</h3>
+   <form method="post">
+     <ul>
+       {% for i, action in enumerate(actions) %}
+         <li><button name="action" class="btn btn-sm {{ action['btn'] }}" type="submit" value="{{ i }}">{{ action['action'] }}</button></li>
+       {% end %}
+     </ul>
+   </form>
 
-  <h3>Hardware Events</h3>
-  <form method="post">
-    <ul>
-      {% for i, action in enumerate(events) %}
-        <li><button name="event" type="submit" value="{{ i }}">{{ action['action'] }}</button></li>
+   <h3>Hardware Events</h3>
+   <form method="post">
+     <ul>
+       {% for i, action in enumerate(events) %}
+         <li><button name="event" class="btn btn-sm {{ action['btn'] }}" type="submit" value="{{ i }}">{{ action['action'] }}</button></li>
       {% end %}
-    </ul>
-  </form>
+     </ul>
+   </form>
+  </div>
 
-  <div id="table-wrapper">
+  <div id="table-wrapper" class="col-lg-10">
    <div id="table-scroll">
     <table>
      <thead>
       <tr>
-       <th>Time</th>
-       <th>Event</th>
-       <th>FC Response</th>
+       <th class="time"><span class="text">Time</span></th>
+       <th class="command" ><span class="text">Event</span></th>
+       <th><span class="text">FC Response</span></th>
       </tr>
      </thead>
      <tbody>
         {% for entry in log %}
             <tr>
-              <td>{{ entry[0] }}</td>
+              <td class="time">{{ entry[0] }}</td>
               <td>{{ entry[1] }}</td>
               <td>{{ entry[2] }}</td>
             </tr>
@@ -75,6 +78,10 @@
     </table>
    </div>
   </div>
+
+  <script>
+    document.getElementById('table-scroll').scrollTop = 10000;
+  </script>
 
  </body>
 </html>
