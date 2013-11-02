@@ -9,10 +9,13 @@
   <h1>PSAS FC Test Framework</h1>
   <hr />
   <p><a href="/mobile">Mobile Test Data Generator</a></p>
-  <ul>
-    {% for button in buttons %}
-      <li>{{ button }}</li>
-    {% end %}
-  </ul>
+  <h3></h3>
+  <form method="post">
+    <ul>
+      {% for i, action in enumerate(actions) %}
+        <li><button name="action" type="submit" value="{{ i }}">{{ action['action'] }}</button></li>
+      {% end %}
+    </ul>
+  </form>
  </body>
 </html>
