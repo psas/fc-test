@@ -1,4 +1,3 @@
-import threading
 import socket
 import struct
 import time
@@ -7,17 +6,10 @@ from random import gauss
 
 RAD2DEG = 57.2957795
 MSS2GEE = 1.0/9.81
-ADIS_Header = struct.Struct('!4sHLH')
-ADIS_Message = struct.Struct('<12H')
-class SensorDevice(threading.Thread):
+ADIS_Message = struct.Struct('!12h')
+class SensorDevice(object):
 
-    def __init__(self, queue):
-        threading.Thread.__init__(self)
-        self._stop = threading.Event()
-        self.daemon = True
-
-        self.queue = queue
-
+    def __init__(self):
         # Open socket and bind to address
         self.ADISsocket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         self.ADISsocket.bind(('127.0.0.1', 35020))
@@ -57,28 +49,10 @@ class SensorDevice(threading.Thread):
         p[11] = 0
         return p
 
-    def run(self):
-        while (not self._stop.is_set()):
-            while not self.queue.empty():
-                for x in self.queue.get():
-                    v = self.mock_packet()
-                    v[4], v[5], v[6] = self.ADISify_acc(x)
+    def send_message(self, data):
+        v = self.mock_packet()
+        v[4], v[5], v[6] = self.ADISify_acc(data)
 
-                    #twos' compliment
-                    for i, n in enumerate(v):
-                        if n<0:
-                            n = (n-1 & 0xffff) + 1
-                        v[i] = n
+        packet = ADIS_Message.pack(*v)
 
-                    packet  = ADIS_Header.pack('ADIS', 0, 0, ADIS_Message.size)
-                    packet += ADIS_Message.pack(*v)
-
-                    self.ADISsocket.sendto(packet, ('127.0.0.1', 36000))
-            time.sleep(0.01)
-
-    def stop(self):
-        self._stop.set()
-        self.ADISsocket.close()
-        self.join()
-
-
+        self.ADISsocket.sendto(packet, ('127.0.0.1', 36000))
