@@ -37,9 +37,9 @@ class SensorDevice(object):
         p[2] = int(gauss(0,0.1)/0.05)
         p[3] = int(gauss(0,0.1)/0.05)
         # accel
-        p[4] = int(gauss(0,0.01)/0.00333)
-        p[5] = int(gauss(0,0.01)/0.00333)
-        p[6] = int(gauss(0,0.01)/0.00333)
+        p[4] = int(gauss(0.98,0.03)/0.00333)
+        p[5] = int(gauss(0,0.03)/0.00333)
+        p[6] = int(gauss(0,0.03)/0.00333)
         # mag
         p[7] = 0
         p[8] = 0
@@ -57,3 +57,9 @@ class SensorDevice(object):
         packet = ADIS_Message.pack(*v)
 
         self.ADISsocket.sendto(packet, (config.FC_IP, config.FC_LISTEN_PORT))
+
+    def send_random(self):
+        v = self.mock_packet()
+        packet = ADIS_Message.pack(*v)
+        self.ADISsocket.sendto(packet, (config.FC_IP, config.FC_LISTEN_PORT))
+

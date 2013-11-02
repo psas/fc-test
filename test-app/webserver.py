@@ -16,6 +16,10 @@ adis = ADIS.SensorDevice()
 
 event_log = []
 
+# periodic callback for sending random data
+sched = tornado.ioloop.PeriodicCallback(adis.send_random, 10)
+
+
 class TestState(object):
     """FSM for running the test framework app"""
 
@@ -26,6 +30,7 @@ class TestState(object):
     def __init__(self):
         # Default state
         self.state = 0
+
     # Events:
     def connect(self):
         self.state ^= TestState.ADIS_TRANS
@@ -41,7 +46,11 @@ class MainHandler(tornado.web.RequestHandler):
 
         connected = False
         if (state.state & TestState.ADIS_TRANS) > 0:
-            connected = True            
+            connected = True
+            sched.start()
+        else:
+            sched.stop()
+
 
         self.render('index.html', actions=FC.actions, events=FC.events, log=event_log, conn=connected)
 
@@ -56,6 +65,9 @@ class MainHandler(tornado.web.RequestHandler):
         connected = False
         if (state.state & TestState.ADIS_TRANS) > 0:
             connected = True
+            sched.start()
+        else:
+            sched.stop()
 
         if abtn is not None:
             action = FC.actions[int(abtn)].get('run')
