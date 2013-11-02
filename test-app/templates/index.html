@@ -39,13 +39,18 @@
  <body>
   <h1>PSAS FC Test Framework</h1>
   <hr />
-  <form class="row">
+  <form class="row" method="post">
    <div class="col-lg-5 col-md-6 well devices">
     <h4>Sensor Board</h4>
 
-    <div class="col-lg-5 col-md-5"> 
-     <button type="button" class="btn btn-success btn-block" disabled="disabled">Connected</button>
-     <button type="button" class="btn btn-default btn-block">Disconnect</button>
+    <div class="col-lg-5 col-md-5">
+     {% if conn %}
+        <button type="submit" name="connectsensor" class="btn btn-block btn-success" disabled="disabled" value="connect">Connected</button>
+        <button type="submit" name="connectsensor" class="btn btn-block btn-default" value="connect">Disconnect</button>
+     {% else %}
+        <button type="submit" name="connectsensor" class="btn btn-block btn-default" value="connect">Connect</button>
+        <button type="submit" name="connectsensor" class="btn btn-block btn-warning" disabled="disabled" value="connect">Disconnected</button>
+     {% end %}
     </div>
 
     <div class="col-lg-7 col-md-7">

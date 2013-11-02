@@ -16,14 +16,46 @@ adis = ADIS.SensorDevice()
 
 event_log = []
 
+class TestState(object):
+    """FSM for running the test framework app"""
+
+    # State Enumus
+    ADIS_TRANS   = 0b0001
+    ADIS_MOBILE  = 0b0010
+
+    def __init__(self):
+        # Default state
+        self.state = 0
+    # Events:
+    def connect(self):
+        self.state ^= TestState.ADIS_TRANS
+
+    def radio(self):
+        self.state ^= TestState.ADIS_MOBILE
+
+state = TestState()
+
 # index page
 class MainHandler(tornado.web.RequestHandler):
     def get(self):
-        self.render('index.html', actions=FC.actions, events=FC.events, log=event_log)
+
+        connected = False
+        if (state.state & TestState.ADIS_TRANS) > 0:
+            connected = True            
+
+        self.render('index.html', actions=FC.actions, events=FC.events, log=event_log, conn=connected)
 
     def post(self):
         abtn = self.get_argument('action', None)
         ebtn = self.get_argument('event', None)
+        conbtn = self.get_argument('connectsensor', None)
+
+        if conbtn is not None:
+            state.connect()
+
+        connected = False
+        if (state.state & TestState.ADIS_TRANS) > 0:
+            connected = True
 
         if abtn is not None:
             action = FC.actions[int(abtn)].get('run')
@@ -39,7 +71,7 @@ class MainHandler(tornado.web.RequestHandler):
                 t = datetime.datetime.now().strftime('%H:%M:%S')
                 event_log.append((t, FC.events[int(ebtn)].get('action'), message))
 
-        self.render('index.html', actions=FC.actions, events=FC.events, log=event_log)
+        self.render('index.html', actions=FC.actions, events=FC.events, log=event_log, conn=connected)\
 
 
 # mobile page
