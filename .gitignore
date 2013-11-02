@@ -1,3 +1,4 @@
 av3-fc
 telemetry
 *.py[cod]
+logfile-*
