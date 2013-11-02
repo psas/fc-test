@@ -8,7 +8,7 @@ setup:
 	ln -s $(TELEM) ./telemetry
 
 build:
-	coffee -c -o mobile-device-test/static/js mobile-device-test/static/src/*.coffee
+	coffee -c -o test-app/static/js test-app/static/src/*.coffee
 
 cleanlinks:
 	unlink ./av3-fc
