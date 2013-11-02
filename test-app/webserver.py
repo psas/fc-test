@@ -2,8 +2,8 @@
 import tornado.web
 import tornado.websocket
 import tornado.ioloop
-import ADIS
-import FC
+import e407_sensor as ADIS
+import fc_comm as FC
 import os
 import datetime
 
