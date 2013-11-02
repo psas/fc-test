@@ -9,12 +9,12 @@
     a {  color: #0000ff; }
     h1 { margin-top: 0; }
     form ul { list-style: none; padding-left: 20px; }
-    form li { margin: 5px 0; }
+    form li { margin: 5px 40px 5px 0; }
     .row { margin-left: 0; }
     .devices { margin-bottom: 0; padding: 10px; }
     .devices h4 { margin-top: 0; }
     .devices p { margin: 0; margin-top: -12px; }
-    .events h3 { margin-top: 10px; }
+    .events h3:first-child { margin-top: 10px; }
     #table-wrapper { margin-top: 10px; position: relative; }
     #table-scroll {
         height: 400px;
@@ -40,15 +40,15 @@
   <h1>PSAS FC Test Framework</h1>
   <hr />
   <form class="row">
-   <div class="col-lg-4 well devices">
+   <div class="col-lg-5 col-md-6 well devices">
     <h4>Sensor Board</h4>
 
-    <div class="col-lg-5"> 
+    <div class="col-lg-5 col-md-5"> 
      <button type="button" class="btn btn-success btn-block" disabled="disabled">Connected</button>
      <button type="button" class="btn btn-default btn-block">Disconnect</button>
     </div>
 
-    <div class="col-lg-7">
+    <div class="col-lg-7 col-md-7">
     <p>Data Source:</p>
     <div class="radio">
       <label>
@@ -69,12 +69,12 @@
   </form>
   <hr />
 
-  <div class="col-lg-2 events">
+  <div class="col-lg-3 col-md-4  events">
    <h3>FCF Events</h3>
    <form method="post">
      <ul>
        {% for i, action in enumerate(actions) %}
-         <li><button name="action" class="btn btn-sm {{ action['btn'] }}" type="submit" value="{{ i }}">{{ action['action'] }}</button></li>
+         <li><button name="action" class="btn btn-sm btn-block {{ action['btn'] }}" type="submit" value="{{ i }}">{{ action['action'] }}</button></li>
        {% end %}
      </ul>
    </form>
@@ -83,13 +83,13 @@
    <form method="post">
      <ul>
        {% for i, action in enumerate(events) %}
-         <li><button name="event" class="btn btn-sm {{ action['btn'] }}" type="submit" value="{{ i }}">{{ action['action'] }}</button></li>
+         <li><button name="event" class="btn btn-sm btn-block {{ action['btn'] }}" type="submit" value="{{ i }}">{{ action['action'] }}</button></li>
       {% end %}
      </ul>
    </form>
   </div>
 
-  <div id="table-wrapper" class="col-lg-10">
+  <div id="table-wrapper" class="col-lg-9 col-md-8">
    <div id="table-scroll">
     <table>
      <thead>
