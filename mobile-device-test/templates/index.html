@@ -9,7 +9,7 @@
   <h1>PSAS FC Test Framework</h1>
   <hr />
   <p><a href="/mobile">Mobile Test Data Generator</a></p>
-  <h3></h3>
+  <h3>FC Events</h3>
   <form method="post">
     <ul>
       {% for i, action in enumerate(actions) %}
@@ -17,5 +17,14 @@
       {% end %}
     </ul>
   </form>
+  <h3>Hardware Events</h3>
+  <form method="post">
+    <ul>
+      {% for i, action in enumerate(events) %}
+        <li><button name="event" type="submit" value="{{ i }}">{{ action['action'] }}</button></li>
+      {% end %}
+    </ul>
+  </form>
+
  </body>
 </html>

@@ -16,20 +16,31 @@ adis = ADIS.SensorDevice()
 # index page
 class MainHandler(tornado.web.RequestHandler):
     def get(self):
-        self.render('index.html', actions=FC.actions)
+        self.render('index.html', actions=FC.actions, events=FC.events)
 
     def post(self):
-        btn = self.get_argument('action', '')
+        abtn = self.get_argument('action', None)
+        ebtn = self.get_argument('event', None)
 
-        action = FC.actions[int(btn)].get('run')
-        if action is not None:
-            message = action()
-            if message is not None:
-                print message
-            else:
-                print "no responce"
+        if abtn is not None:
+            action = FC.actions[int(abtn)].get('run')
+            if action is not None:
+                message = action()
+                if message is not None:
+                    print message
+                else:
+                    print "no responce"
 
-        self.render('index.html', actions=FC.actions)
+        if ebtn is not None:
+            action = FC.events[int(ebtn)].get('run')
+            if action is not None:
+                message = action()
+                if message is not None:
+                    print message
+                else:
+                    print "no responce"
+
+        self.render('index.html', actions=FC.actions, events=FC.events)
 
 
 # mobile page
