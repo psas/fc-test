@@ -7,21 +7,26 @@
   <style>
     body { padding: 30px; }
     a {  color: #0000ff; }
+    h1 { margin-top: 0; }
     form ul { list-style: none; padding-left: 20px; }
     form li { margin: 5px 0; }
-    #table-wrapper { position:relative; }
-
+    .row { margin-left: 0; }
+    .devices { margin-bottom: 0; padding: 10px; }
+    .devices h4 { margin-top: 0; }
+    .devices p { margin: 0; margin-top: -12px; }
+    .events h3 { margin-top: 10px; }
+    #table-wrapper { margin-top: 10px; position: relative; }
     #table-scroll {
-        height:400px;
-        overflow:auto;  
-        margin-top:20px;
+        height: 400px;
+        overflow: auto;  
+        margin-top: 20px;
     }
 
     #table-wrapper table { width:100%; }
 
     #table-wrapper table thead th .text {
         position:absolute;   
-        top:-20px;
+        top: 0;
         z-index:2;
         height:20px;
     }
@@ -34,9 +39,37 @@
  <body>
   <h1>PSAS FC Test Framework</h1>
   <hr />
-  <p><a href="/mobile">Mobile Test Data Generator</a></p>
+  <form class="row">
+   <div class="col-lg-4 well devices">
+    <h4>Sensor Board</h4>
 
-  <div class="col-lg-2">
+    <div class="col-lg-5"> 
+     <button type="button" class="btn btn-success btn-block" disabled="disabled">Connected</button>
+     <button type="button" class="btn btn-default btn-block">Disconnect</button>
+    </div>
+
+    <div class="col-lg-7">
+    <p>Data Source:</p>
+    <div class="radio">
+      <label>
+        <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+        Random Values
+      </label>
+    </div>
+    <div class="radio">
+      <label>
+        <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+        <a href="/mobile">Mobile Test Data Generator</a>
+      </label>
+    </div>
+
+    </div>
+
+   </div>
+  </form>
+  <hr />
+
+  <div class="col-lg-2 events">
    <h3>FCF Events</h3>
    <form method="post">
      <ul>
