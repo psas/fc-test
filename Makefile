@@ -16,3 +16,6 @@ cleanlinks:
 
 clean:
 	rm -f static/js/*.js
+
+rmlogs:
+	rm -f logfile-*
