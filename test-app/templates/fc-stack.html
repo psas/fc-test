@@ -39,29 +39,16 @@
  <body>
   <h1>PSAS FC Stack Test</h1>
   <hr />
-  <form class="row" method="post">
+  <div id="commands" class="col-sm-3">
 
-   <h3>RNH Commands</h3>
-     <ul>
-       {% for i, action in enumerate(rnh_actions) %}
-         <li><button name="action" class="btn btn-sm btn-block {{ action['btn'] }}" type="submit" value="{{ i }}">{{ action['action'] }}</button></li>
-       {% end %}
-     </ul>
-
-   <h3>FCF Commands</h3>
-     <ul>
-       {% for i, action in enumerate(fc_actions) %}
-         <li><button name="action" class="btn btn-sm btn-block {{ action['btn'] }}" type="submit" value="{{ i }}">{{ action['action'] }}</button></li>
-       {% end %}
-     </ul>
-
-   <h3>Hardware Events</h3>
-     <ul>
-       {% for i, action in enumerate(events) %}
-         <li><button name="event" class="btn btn-sm btn-block {{ action['btn'] }}" type="submit" value="{{ i }}">{{ action['action'] }}</button></li>
-      {% end %}
-     </ul>
+    {% for section in sections %}
+        <h3>{{ section['name'] }}</h3>
+        <ul>
+            {% for action in section['commands']['action-list'] %}
+                <li><a class="btn btn-sm btn-block {{ section['commands']['actions'][action]['btn'] }}" href="{{ section['type'] }}/{{ action }}">{{ action }}</a></li>
+            {% end %}
+        </ul>
+    {% end %}
   </div>
-</form>
-</body>
+ </body>
 </html>

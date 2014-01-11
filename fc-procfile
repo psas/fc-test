@@ -1,0 +1,2 @@
+fctalk: ./test-app/webserver.py
+telemetry: python ./telemetry/telemetry.py

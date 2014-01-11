@@ -4,7 +4,7 @@ import tornado.websocket
 import tornado.ioloop
 import e407_sensor as ADIS
 import fc_comm as FC
-import rnh_comm as RNH
+import comm
 import os
 import datetime
 import config
@@ -91,8 +91,21 @@ class MainHandler(tornado.web.RequestHandler):
 
 class FCHandler(tornado.web.RequestHandler):
 
+    sections = [{'name': "RNH Commands", 'type': "RNH", 'commands': comm.RNH}]
+
     def get(self, command):
-        self.render('fc-stack.html', rnh_actions=[], fc_actions=[], events=[])
+        if command == '':
+            self.render('fc-stack.html', sections=self.sections)
+        else:
+            print command
+            module, command = command.split('/')
+            for s in self.sections:
+                if module == s['type']:
+                    action = s['commands']['actions'][command]
+                    message = action['message']
+                    port = action['port']
+                    s['commands']['comm'].send(port, message)
+            self.redirect('/fc-stack/')
 
 
 # mobile page
