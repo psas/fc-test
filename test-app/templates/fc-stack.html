@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body { padding: 30px; }
+    a {  color: #0000ff; }
+    h1 { margin-top: 0; }
+    form ul { list-style: none; padding-left: 20px; }
+    form li { margin: 5px 40px 5px 0; }
+    .row { margin-left: 0; }
+    .devices { margin-bottom: 0; padding: 10px; }
+    .devices h4 { margin-top: 0; }
+    .devices p { margin: 0; margin-top: -12px; }
+    .events h3:first-child { margin-top: 10px; }
+    #table-wrapper { margin-top: 10px; position: relative; }
+    #table-scroll {
+        height: 400px;
+        overflow: auto;  
+        margin-top: 20px;
+    }
+
+    #table-wrapper table { width:100%; }
+
+    #table-wrapper table thead th .text {
+        position:absolute;   
+        top: 0;
+        z-index:2;
+        height:20px;
+    }
+
+    .time { width: 100px; }
+    .command { width: 33%; }
+  </style>
+  <title>PSAS FC Stack Test</title>
+ </head>
+ <body>
+  <h1>PSAS FC Stack Test</h1>
+  <hr />
+  <form class="row" method="post">
+
+   <h3>RNH Commands</h3>
+     <ul>
+       {% for i, action in enumerate(rnh_actions) %}
+         <li><button name="action" class="btn btn-sm btn-block {{ action['btn'] }}" type="submit" value="{{ i }}">{{ action['action'] }}</button></li>
+       {% end %}
+     </ul>
+
+   <h3>FCF Commands</h3>
+     <ul>
+       {% for i, action in enumerate(fc_actions) %}
+         <li><button name="action" class="btn btn-sm btn-block {{ action['btn'] }}" type="submit" value="{{ i }}">{{ action['action'] }}</button></li>
+       {% end %}
+     </ul>
+
+   <h3>Hardware Events</h3>
+     <ul>
+       {% for i, action in enumerate(events) %}
+         <li><button name="event" class="btn btn-sm btn-block {{ action['btn'] }}" type="submit" value="{{ i }}">{{ action['action'] }}</button></li>
+      {% end %}
+     </ul>
+  </div>
+</form>
+</body>
+</html>

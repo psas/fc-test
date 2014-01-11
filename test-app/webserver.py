@@ -4,6 +4,7 @@ import tornado.websocket
 import tornado.ioloop
 import e407_sensor as ADIS
 import fc_comm as FC
+import rnh_comm as RNH
 import os
 import datetime
 import config
@@ -86,6 +87,14 @@ class MainHandler(tornado.web.RequestHandler):
         self.render('index.html', actions=FC.actions, events=FC.events, log=event_log, conn=connected)\
 
 
+# Direct FC page
+
+class FCHandler(tornado.web.RequestHandler):
+
+    def get(self, command):
+        self.render('fc-stack.html', rnh_actions=[], fc_actions=[], events=[])
+
+
 # mobile page
 class MobileHandler(tornado.web.RequestHandler):
     def get(self):
@@ -113,6 +122,7 @@ if __name__ == "__main__":
     # setup
     application = tornado.web.Application([
             (r'/', MainHandler),
+            (r'/fc-stack/(.*)', FCHandler),
             (r'/mobile', MobileHandler),
             (r'/ws', FrontEndWebSocket)
         ], template_path=template_path, static_path=static_path)
