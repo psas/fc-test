@@ -28,18 +28,20 @@ class Comm(object):
         return data
 
 
+# Rocket Net Hub commands
 RNH = {
-    'comm': Comm(config.RNH_IP, 34000),
-    'action-list': ["ARM", "Safe", "On1", "On2", "On3", "On4", "On6", "On7", "Off1", "Off2", "Off3", "Off4", "Off6", "Off7"],
-    'actions': {
-        'ARM': {'name': "ARM", 'btn': "btn-danger",   'message': "#YOLO", 'port': config.RNH_LISTEN_PORT},
-        'Safe': {'name': "Safe", 'btn': "btn-success", 'message': "#SAFE", 'port': config.RNH_LISTEN_PORT},
-        'On1': {'name': "IMU On", 'btn': "btn-warning",  'message': "#ON_P"+chr(1<<1), 'port': config.RNH_LISTEN_PORT},
-        'On2': {'name': "2 On", 'btn': "btn-warning",  'message': "#ON_P"+chr(1<<2), 'port': config.RNH_LISTEN_PORT},
-        'On3': {'name': "3 On", 'btn': "btn-warning",  'message': "#ON_P"+chr(1<<3), 'port': config.RNH_LISTEN_PORT},
-        'On4': {'name': "FC On", 'btn': "btn-warning",  'message': "#ON_P"+chr(1<<4), 'port': config.RNH_LISTEN_PORT},
-        'On6': {'name': "6 On", 'btn': "btn-warning",  'message': "#ON_P"+chr(1<<6), 'port': config.RNH_LISTEN_PORT},
-        'On7': {'name': "7 On", 'btn': "btn-warning",  'message': "#ON_P"+chr(1<<7), 'port': config.RNH_LISTEN_PORT},
+    'comm': Comm(config.RNH_IP, config.RNH_LISTEN_PORT),
+    'command-list': ["ARM", "SAFE"],
+    'commands': {
+        'ARM':  {'name': "ARM RNH",  'message': "#YOLO", 'from-port': 34000, 'btn': "danger"},
+        'SAFE': {'name': "SAFE RNH", 'message': "#SAFE", 'from-port': 34000, 'btn': "safe"},
+
+        'On1':  {'name': "IMU On", 'btn': "btn-warning",  'message': "#ON_P"+chr(1<<1), 'port': config.RNH_LISTEN_PORT},
+        'On2':  {'name': "2 On", 'btn': "btn-warning",  'message': "#ON_P"+chr(1<<2), 'port': config.RNH_LISTEN_PORT},
+        'On3':  {'name': "3 On", 'btn': "btn-warning",  'message': "#ON_P"+chr(1<<3), 'port': config.RNH_LISTEN_PORT},
+        'On4':  {'name': "FC On", 'btn': "btn-warning",  'message': "#ON_P"+chr(1<<4), 'port': config.RNH_LISTEN_PORT},
+        'On6':  {'name': "6 On", 'btn': "btn-warning",  'message': "#ON_P"+chr(1<<6), 'port': config.RNH_LISTEN_PORT},
+        'On7':  {'name': "7 On", 'btn': "btn-warning",  'message': "#ON_P"+chr(1<<7), 'port': config.RNH_LISTEN_PORT},
         'Off1': {'name': "IMU Off", 'btn': "btn-default",  'message': "#FF_P"+chr(1<<1), 'port': config.RNH_LISTEN_PORT},
         'Off2': {'name': "2 Off", 'btn': "btn-default",  'message': "#FF_P"+chr(1<<2), 'port': config.RNH_LISTEN_PORT},
         'Off3': {'name': "3 Off", 'btn': "btn-default",  'message': "#FF_P"+chr(1<<3), 'port': config.RNH_LISTEN_PORT},
@@ -47,5 +49,15 @@ RNH = {
         'Off6': {'name': "6 Off", 'btn': "btn-default",  'message': "#FF_P"+chr(1<<6), 'port': config.RNH_LISTEN_PORT},
         'Off7': {'name': "7 Off", 'btn': "btn-default",  'message': "#FF_P"+chr(1<<7), 'port': config.RNH_LISTEN_PORT},
 
+    }
+}
+
+# Flight Computer Framework commands
+FCF = {
+    'comm': Comm(config.FC_IP, config.FC_LISTEN_PORT),
+    'command-list': ["ARM", "SAFE"],
+    'commands': {
+        'ARM':  {'name': "ARM FC",  'message': "#YOLO", 'from-port': config.FC_TALK_ARM, 'btn': "danger"},
+        'SAFE': {'name': "SAFE FC", 'message': "#SAFE", 'from-port': config.FC_TALK_ARM, 'btn': "safe"},
     }
 }

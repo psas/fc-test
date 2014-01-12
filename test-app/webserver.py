@@ -91,7 +91,10 @@ class MainHandler(tornado.web.RequestHandler):
 
 class FCHandler(tornado.web.RequestHandler):
 
-    sections = [{'name': "RNH Commands", 'type': "RNH", 'commands': comm.RNH}]
+    sections = [
+        {'name': "RNH Commands", 'type': "RNH", 'def': comm.RNH},
+        {'name': "FC Commands",  'type': "FCF", 'def': comm.FCF}
+    ]
 
     def get(self, command):
         if command == '':
@@ -101,10 +104,10 @@ class FCHandler(tornado.web.RequestHandler):
             module, command = command.split('/')
             for s in self.sections:
                 if module == s['type']:
-                    action = s['commands']['actions'][command]
-                    message = action['message']
-                    port = action['port']
-                    s['commands']['comm'].send(port, message)
+                    command = s['def']['commands'][command]
+                    message = command['message']
+                    port = command['from-port']
+                    s['def']['comm'].send(port, message)
             self.redirect('/fc-stack/')
 
 

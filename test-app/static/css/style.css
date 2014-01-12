@@ -1,0 +1,40 @@
+body { padding: 30px; }
+a {  color: #0000ff; }
+h1 { margin-top: 0; }
+form ul { list-style: none; padding-left: 20px; }
+form li { margin: 5px 40px 5px 0; }
+.row { margin-left: 0; }
+.devices { margin-bottom: 0; padding: 10px; }
+.devices h4 { margin-top: 0; }
+.devices p { margin: 0; margin-top: -12px; }
+.events h3:first-child { margin-top: 10px; }
+#table-wrapper { margin-top: 10px; position: relative; }
+#table-scroll {
+    height: 400px;
+    overflow: auto;  
+    margin-top: 20px;
+}
+
+#table-wrapper table { width:100%; }
+
+#table-wrapper table thead th .text {
+    position:absolute;   
+    top: 0;
+    z-index:2;
+    height:20px;
+}
+
+.time { width: 100px; }
+.command { width: 33%; }
+
+.btn-safe {
+    color: #ffffff;
+    background-color: #5cb85c;
+    border-color: #4cae4c;
+}
+
+.btn-safe:hover, .btn-safe:focus, .btn-safe:active {
+    color: #ffffff;
+    background-color: #47a447;
+    border-color: #398439;
+}

@@ -4,36 +4,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="/static/css/bootstrap.min.css" rel="stylesheet">
-  <style>
-    body { padding: 30px; }
-    a {  color: #0000ff; }
-    h1 { margin-top: 0; }
-    form ul { list-style: none; padding-left: 20px; }
-    form li { margin: 5px 40px 5px 0; }
-    .row { margin-left: 0; }
-    .devices { margin-bottom: 0; padding: 10px; }
-    .devices h4 { margin-top: 0; }
-    .devices p { margin: 0; margin-top: -12px; }
-    .events h3:first-child { margin-top: 10px; }
-    #table-wrapper { margin-top: 10px; position: relative; }
-    #table-scroll {
-        height: 400px;
-        overflow: auto;  
-        margin-top: 20px;
-    }
-
-    #table-wrapper table { width:100%; }
-
-    #table-wrapper table thead th .text {
-        position:absolute;   
-        top: 0;
-        z-index:2;
-        height:20px;
-    }
-
-    .time { width: 100px; }
-    .command { width: 33%; }
-  </style>
+  <link href="/static/css/style.css" rel="stylesheet">
   <title>PSAS FC Stack Test</title>
  </head>
  <body>
@@ -44,11 +15,12 @@
     {% for section in sections %}
         <h3>{{ section['name'] }}</h3>
         <ul>
-            {% for action in section['commands']['action-list'] %}
-                <li><a class="btn btn-sm btn-block {{ section['commands']['actions'][action]['btn'] }}" href="{{ section['type'] }}/{{ action }}">{{ section['commands']['actions'][action]['name'] }}</a></li>
+            {% for command in section['def']['command-list'] %}
+                <li><a class="btn btn-sm btn-block btn-{{ section['def']['commands'][command]['btn'] }}" href="{{ section['type'] }}/{{ command }}">{{ section['def']['commands'][command]['name'] }}</a></li>
             {% end %}
         </ul>
     {% end %}
+
   </div>
  </body>
 </html>
