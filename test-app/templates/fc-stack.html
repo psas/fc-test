@@ -31,14 +31,16 @@
       </ul>
     </div>
 
-    <div id="commands" class="col-sm-3">
+    <div id="commands">
     {% for section in sections %}
-        <h3>{{ section['name'] }}</h3>
-        <ul>
+        <div class="row">
+         <h3>{{ section['name'] }}</h3>
+         <ul>
             {% for command in section['def']['command-list'] %}
-                <li><a class="btn btn-sm btn-block btn-{{ section['def']['commands'][command]['btn'] }}" href="{{ section['type'] }}/{{ command }}">{{ section['def']['commands'][command]['name'] }}</a></li>
+                <li class="col-sm-2"><a class="btn btn-sm btn-block btn-{{ section['def']['commands'][command]['btn'] }}" href="{{ section['type'] }}/{{ command }}">{{ section['def']['commands'][command]['name'] }}</a></li>
             {% end %}
-        </ul>
+         </ul>
+        </div>
     {% end %}
     </div>
 

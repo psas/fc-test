@@ -49,9 +49,13 @@ RNH = {
 # Flight Computer Framework commands
 FCF = {
     'comm': Comm(config.FC_IP, config.FC_LISTEN_PORT),
-    'command-list': ["ARM", "SAFE"],
+    'command-list': ["ARM", "SAFE", "disloc", "ensloc", "enservo", "diservo"],
     'commands': {
-        'ARM':  {'name': "ARM FC",  'message': "#YOLO", 'from-port': config.FC_TALK_ARM, 'btn': "danger"},
-        'SAFE': {'name': "SAFE FC", 'message': "#SAFE", 'from-port': config.FC_TALK_ARM, 'btn': "safe"},
+        'ARM':     {'name': "ARM FC",               'message': "#YOLO",     'from-port': config.FC_TALK_ARM, 'btn': "danger"},
+        'SAFE':    {'name': "SAFE FC",              'message': "#SAFE",     'from-port': config.FC_TALK_ARM, 'btn': "safe"},
+        'disloc':  {'name': "Override Sensor Lock", 'message': "DI_SLOCK",  'from-port': config.FC_TALK_ARM, 'btn': "warning"},
+        'ensloc':  {'name': "Enable Sensor Lock",   'message': "EN_SLOCK",  'from-port': config.FC_TALK_ARM, 'btn': "default"},
+        'enservo': {'name': "Enable Roll Servo",    'message': "ENABLE",    'from-port': config.FC_TALK_SERVO, 'btn': "warning"},
+        'diservo': {'name': "Disable Roll Servo",   'message': "DISABLE",   'from-port': config.FC_TALK_SERVO, 'btn': "default"},
     }
 }
