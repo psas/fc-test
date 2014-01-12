@@ -45,7 +45,7 @@
         <h3>{{ section['name'] }}</h3>
         <ul>
             {% for action in section['commands']['action-list'] %}
-                <li><a class="btn btn-sm btn-block {{ section['commands']['actions'][action]['btn'] }}" href="{{ section['type'] }}/{{ action }}">{{ action }}</a></li>
+                <li><a class="btn btn-sm btn-block {{ section['commands']['actions'][action]['btn'] }}" href="{{ section['type'] }}/{{ action }}">{{ section['commands']['actions'][action]['name'] }}</a></li>
             {% end %}
         </ul>
     {% end %}
