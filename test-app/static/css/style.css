@@ -38,3 +38,53 @@ form li { margin: 5px 40px 5px 0; }
     background-color: #47a447;
     border-color: #398439;
 }
+
+#commands ul {
+    list-style: none;
+}
+
+#commands li {
+}
+
+/* Fancy RNH */
+#RNH {
+    background: #eee;
+    padding: 10px;
+}
+
+#RNH ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+#RNH li {
+    background: #ccc;
+    margin-left: 6%;
+    padding: 10px 0;
+}
+
+#RNH .info {
+    font-size: 2.0em;
+    font-weight: bold;
+}
+
+#RNH .port {
+    font-weight: normal;
+    font-size: 0.8em;
+    color: #888;
+}
+
+#RNH .status {
+    font-weight: normal;
+    font-size: 1.2em;
+    color: #f00;
+}
+#RNH .on {
+    color: #0f0;
+}
+
+#RNH .center {
+    margin-top: 30px;
+    margin-bottom: 30px;h
+}

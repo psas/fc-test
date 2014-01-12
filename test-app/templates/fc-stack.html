@@ -10,8 +10,28 @@
  <body>
   <h1>PSAS FC Stack Test</h1>
   <hr />
-  <div id="commands" class="col-sm-3">
+  
 
+    <h3>Rocket Net Hub:</h3>
+    <div id="RNH" class="row">
+      <ul class="top">
+        <li class="col-sm-2"><div class="info col-sm-7"><span class="status off">&otimes;</span><span class="port">1</span> IMU</div><div class="col-sm-5"><a class="btn btn-sm btn-block btn-warning" href="">ON</a><a class="btn btn-sm btn-block btn-default" href="">off</a></div></li>
+        <li class="col-sm-2"><div class="info col-sm-7"><span class="status on">&#9787;</span><span class="port">2</span></div><div class="col-sm-5"><a class="btn btn-sm btn-block btn-warning" href="">ON</a><a class="btn btn-sm btn-block btn-default" href="">off</a></div></li>
+        <li class="col-sm-2"><div class="info col-sm-7"><span class="status off">&otimes;</span><span class="port">3</span></div><div class="col-sm-5"><a class="btn btn-sm btn-block btn-warning" href="">ON</a><a class="btn btn-sm btn-block btn-default" href="">off</a></div></li>
+        <li class="col-sm-2"><div class="info col-sm-7"><span class="status off">&otimes;</span><span class="port">4</span> FC</div><div class="col-sm-5"><a class="btn btn-sm btn-block btn-warning" href="">ON</a><a class="btn btn-sm btn-block btn-default" href="">off</a></div></li>
+      </ul>
+      <div class="center col-sm-8 col-sm-offset-2">
+        <a class="btn btn-sm btn-block btn-default" href="">Get Status</a>
+      </div>
+      <ul class="top">
+        <li class="col-sm-2"><div class="info col-sm-12"><span class="port">5</span> UMB</div></li>
+        <li class="col-sm-2"><div class="info col-sm-7"><span class="status off">&otimes;</span><span class="port">6</span></div><div class="col-sm-5"><a class="btn btn-sm btn-block btn-warning" href="">ON</a><a class="btn btn-sm btn-block btn-default" href="">off</a></div></li>
+        <li class="col-sm-2"><div class="info col-sm-7"><span class="status off">&otimes;</span><span class="port">7</span></div><div class="col-sm-5"><a class="btn btn-sm btn-block btn-warning" href="">ON</a><a class="btn btn-sm btn-block btn-default" href="">off</a></div></li>
+        <li class="col-sm-2"><div class="info col-sm-7"><span class="status off">&otimes;</span><span class="port">8</span> ROLL</div><div class="col-sm-5"><a class="btn btn-sm btn-block btn-warning" href="">ON</a><a class="btn btn-sm btn-block btn-default" href="">off</a></div></li>
+      </ul>
+    </div>
+
+    <div id="commands" class="col-sm-3">
     {% for section in sections %}
         <h3>{{ section['name'] }}</h3>
         <ul>
@@ -20,7 +40,7 @@
             {% end %}
         </ul>
     {% end %}
+    </div>
 
-  </div>
  </body>
 </html>
