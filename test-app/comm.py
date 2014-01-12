@@ -3,27 +3,21 @@ import config
 
 class Comm(object):
 
-    def __init__(self, ip, port):
-        self.ip = ip
-        self.port = port
-
-        self.sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        self.sock.bind(('0.0.0.0', port))
-        #self.sock.settimeout(0.5)
+    def __init__(self, to_ip, to_port):
+        """to_ip is the address sockets will send to, same with port"""
+        self.ip = to_ip
+        self.port = to_port
 
     def send(self, port, message):
+        """port is the port the message should come from, and message is what is sent"""
+
+        # Debug
         print "Sending!!", port, message
 
-        data = self.sock.sendto(message, (self.ip, port))
-
-        """
-        try:
-            sock.sendto(message, (self.ip, port))
-            data, remote_addr = sock.recvfrom(4096)
-            print data
-        except:
-            data = None
-        """
+        # Build socket
+        sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        sock.bind(('0.0.0.0', port))
+        data = sock.sendto(message, (self.ip, self.port))
 
         return data
 
