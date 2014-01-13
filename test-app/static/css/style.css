@@ -54,7 +54,10 @@ form li { margin: 5px 40px 5px 0; }
 #RNH {
     background: #eee;
     padding: 10px;
+    border-radius: 15px;
 }
+
+.fc #RNH { background: #fee;}
 
 #RNH ul {
     list-style: none;
@@ -76,17 +79,16 @@ form li { margin: 5px 40px 5px 0; }
 #RNH .port {
     font-weight: normal;
     font-size: 0.8em;
-    color: #888;
+    color: #444;
 }
 
 #RNH .status {
     font-weight: normal;
     font-size: 1.2em;
-    color: #f00;
+    color: #888;
 }
-#RNH .on {
-    color: #0f0;
-}
+#RNH .off { color: #f00;}
+#RNH .on { color: #0f0; }
 
 #RNH .center {
     margin-top: 30px;

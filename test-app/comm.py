@@ -27,22 +27,22 @@ RNH = {
     'comm': Comm(config.RNH_IP, config.RNH_LISTEN_PORT),
     'command-list': ["ARM", "SAFE"],
     'commands': {
-        'ARM':  {'name': "ARM RNH",  'message': "#YOLO", 'from-port': 34000, 'btn': "danger"},
-        'SAFE': {'name': "SAFE RNH", 'message': "#SAFE", 'from-port': 34000, 'btn': "safe"},
-
-        'On1':  {'name': "IMU On", 'btn': "btn-warning",  'message': "#ON_P"+chr(1<<1), 'port': config.RNH_LISTEN_PORT},
-        'On2':  {'name': "2 On", 'btn': "btn-warning",  'message': "#ON_P"+chr(1<<2), 'port': config.RNH_LISTEN_PORT},
-        'On3':  {'name': "3 On", 'btn': "btn-warning",  'message': "#ON_P"+chr(1<<3), 'port': config.RNH_LISTEN_PORT},
-        'On4':  {'name': "FC On", 'btn': "btn-warning",  'message': "#ON_P"+chr(1<<4), 'port': config.RNH_LISTEN_PORT},
-        'On6':  {'name': "6 On", 'btn': "btn-warning",  'message': "#ON_P"+chr(1<<6), 'port': config.RNH_LISTEN_PORT},
-        'On7':  {'name': "7 On", 'btn': "btn-warning",  'message': "#ON_P"+chr(1<<7), 'port': config.RNH_LISTEN_PORT},
-        'Off1': {'name': "IMU Off", 'btn': "btn-default",  'message': "#FF_P"+chr(1<<1), 'port': config.RNH_LISTEN_PORT},
-        'Off2': {'name': "2 Off", 'btn': "btn-default",  'message': "#FF_P"+chr(1<<2), 'port': config.RNH_LISTEN_PORT},
-        'Off3': {'name': "3 Off", 'btn': "btn-default",  'message': "#FF_P"+chr(1<<3), 'port': config.RNH_LISTEN_PORT},
-        'Off4': {'name': "FC Off", 'btn': "btn-default",  'message': "#FF_P"+chr(1<<4), 'port': config.RNH_LISTEN_PORT},
-        'Off6': {'name': "6 Off", 'btn': "btn-default",  'message': "#FF_P"+chr(1<<6), 'port': config.RNH_LISTEN_PORT},
-        'Off7': {'name': "7 Off", 'btn': "btn-default",  'message': "#FF_P"+chr(1<<7), 'port': config.RNH_LISTEN_PORT},
-
+        'ARM':  {'name': "ARM RNH",  'message': "#YOLO",           'from-port': 34000, 'btn': "danger"},
+        'SAFE': {'name': "SAFE RNH", 'message': "#SAFE",           'from-port': 34000, 'btn': "safe"},
+        'On1':  {'name': "1 On",     'message': "#ON_P"+chr(1<<1), 'from-port': 34000, 'btn': "warning"},
+        'On2':  {'name': "2 On",     'message': "#ON_P"+chr(1<<2), 'from-port': 34000, 'btn': "warning"},
+        'On3':  {'name': "3 On",     'message': "#ON_P"+chr(1<<3), 'from-port': 34000, 'btn': "warning"},
+        'On4':  {'name': "4 On",     'message': "#ON_P"+chr(1<<4), 'from-port': 34000, 'btn': "warning"},
+        'On6':  {'name': "6 On",     'message': "#ON_P"+chr(1<<6), 'from-port': 34000, 'btn': "warning"},
+        'On7':  {'name': "7 On",     'message': "#ON_P"+chr(1<<7), 'from-port': 34000, 'btn': "warning"},
+        'On8':  {'name': "8 On",     'message': "#ON_P"+chr(1<<5), 'from-port': 34000, 'btn': "warning"},
+        'off1': {'name': "1 Off",    'message': "#FF_P"+chr(1<<1), 'from-port': 34000, 'btn': "default"},
+        'off2': {'name': "2 Off",    'message': "#FF_P"+chr(1<<2), 'from-port': 34000, 'btn': "default"},
+        'off3': {'name': "3 Off",    'message': "#FF_P"+chr(1<<3), 'from-port': 34000, 'btn': "default"},
+        'off4': {'name': "4 Off",    'message': "#FF_P"+chr(1<<4), 'from-port': 34000, 'btn': "default"},
+        'off6': {'name': "6 Off",    'message': "#FF_P"+chr(1<<6), 'from-port': 34000, 'btn': "default"},
+        'off7': {'name': "7 Off",    'message': "#FF_P"+chr(1<<7), 'from-port': 34000, 'btn': "default"},
+        'off8': {'name': "8 Off",    'message': "#FF_P"+chr(1<<5), 'from-port': 34000, 'btn': "default"},
     }
 }
 

@@ -108,7 +108,7 @@ class FCHandler(tornado.web.RequestHandler):
                     message = command['message']
                     port = command['from-port']
                     s['def']['comm'].send(port, message)
-            self.redirect('/fc-stack/')
+            self.redirect('/fc/')
 
 
 # mobile page
