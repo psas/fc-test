@@ -27,6 +27,10 @@ form li { margin: 5px 40px 5px 0; }
 .time { width: 100px; }
 .command { width: 33%; }
 
+.fc {
+    background: #faa;
+}
+
 .btn-safe {
     color: #ffffff;
     background-color: #5cb85c;

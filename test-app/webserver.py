@@ -138,7 +138,7 @@ if __name__ == "__main__":
     # setup
     application = tornado.web.Application([
             (r'/', MainHandler),
-            (r'/fc-stack/(.*)', FCHandler),
+            (r'/fc/(.*)', FCHandler),
             (r'/mobile', MobileHandler),
             (r'/ws', FrontEndWebSocket)
         ], template_path=template_path, static_path=static_path)
