@@ -12,7 +12,7 @@ class Comm(object):
         """port is the port the message should come from, and message is what is sent"""
 
         # Debug
-        print "Sending!!", port, message
+        print "Send: from \033[94mlocal:%d\033[0m to \033[91m%s:%d\033[0m: \x1b[35;7m" % (port, self.ip, self.port), message, "\033[0m"
 
         # Build socket
         sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
