@@ -1,5 +1,6 @@
 import socket
 import config
+from math import log
 
 class Comm(object):
 
@@ -10,6 +11,9 @@ class Comm(object):
 
     def send(self, port, message):
         """port is the port the message should come from, and message is what is sent"""
+
+        if '#FF' in message or '#ON' in message:
+            message += " (port %d)" % log(ord(message[-1]), 2)
 
         # Debug
         print "Send: from \033[94mlocal:%d\033[0m to \033[91m%s:%d\033[0m: \x1b[35;7m" % (port, self.ip, self.port), message, "\033[0m"
