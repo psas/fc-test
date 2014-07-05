@@ -14,13 +14,12 @@ Make sure you have the flight computer code and the telemetry viewer
  - FC: <https://github.com/psas/av3-fc>
  - Telemetry: <https://github.com/psas/telemetry>
 
-Make sure you can build and run the FC and telemtry framework on their own.
+Make sure you can build and run the FC and telemetry framework on their own.
 
 
 ### Build links
 
-Edit the Makefile to point towards the location where you cloned the above
-on your machine.
+Edit the Makefile to change `FCBIN` and `TELEM` variables to point towards the location where you cloned the above on your machine.
 
 	$ make setup
 
@@ -38,7 +37,7 @@ Generate javascript for the test control panel. Make sure you have coffeescript
 
 Make a virtual env and install the requirements
 
-    $ mkvirualenv fctest
+    $ mkvirtualenv fctest
     (fctest)$ pip install -r requirements.txt
  
 
@@ -47,11 +46,17 @@ Make a virtual env and install the requirements
 Once you have everything set up continue to develop back as normal. When you
 need to run the FC as a full test simply come here and run
 
-	$ ./run
+	(fctest)$ ./run
 
-And it will bring up everything. `ctrl-c` will kill everything.
+## Usage
 
 Open browser pages to:
 
  - <localhost:5000> (the control panel)
  - <localhost:8080> (telemetry)
+
+## Finish and Resume
+
+When you're finished, kill the script with Ctrl+C and get out of the virtualenv with `deactivate`.
+
+To resume the environment, navigate back to this directory and run `workon fctest`.
