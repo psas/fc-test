@@ -1,18 +1,21 @@
 #!/usr/bin/env python
-import numpy
-import sys
+import csv
 import os
-import time
 from psas_packet import messages, network
+import sys
+import time
 
 data_dir = sys.argv[1]
 
 # original data. See: <https://github.com/psas/Launch-11>
 rolldata_file = os.path.join(data_dir, 'rollcontrol/resampled_roll_data.csv')
-columns = numpy.loadtxt(rolldata_file, delimiter=',', unpack=True)
 
-accel = columns[0]
-roll  = columns[1]
+accel = []
+roll = []
+with open(rolldata_file) as f:
+    for line in csv.reader(f):
+        accel.append(float(line[0]))
+        roll.append(float(line[1]))
 
 adis_sample_rate = 819.2   # Hz
 
