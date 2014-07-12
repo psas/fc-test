@@ -74,7 +74,7 @@ def sender():
             for seq, accel_sample in enumerate(accel):
                 start = time.time()
 
-                adis.send_seq_message(messages.ADIS, seq, {
+                adis.send_seq_data(messages.ADIS, seq, {
                     'Acc_X': accel_sample,
                     'Gyro_X': roll_rate * 180 / math.pi,
                 })
