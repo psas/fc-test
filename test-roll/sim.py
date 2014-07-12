@@ -99,7 +99,7 @@ for pkt in iter(lambda: servo_socket.recv(1500), None):
     seq, cmd, enable = servo_struct.unpack(pkt)
     new_angle = 0.0
     if enable:
-        new_angle = (cmd - CANARD_PWM_CENTER) / CANARD_PWM_PER_DEGREE
+        new_angle = (cmd - CANARD_PWM_TICKS_CENTER) / CANARD_PWM_TICKS_PER_DEGREE
 
     if new_angle > MAX_CANARD_ANGLE:
         new_angle = MAX_CANARD_ANGLE
