@@ -49,27 +49,13 @@ def roll_coefficient():
     return F * A * r * 0.5 * rho / I / magic
 
 # global state
-seq = 0
-velocity = 0.0
 fin_angle = 0.0
-roll_rate = 0.0
-
-def update_roll_rate():
-    global roll_rate
-
-    K_P = 2.45
-    K_V = 3.21
-    fin_cos = math.cos(fin_angle)
-    fin_sin = math.sin(fin_angle)
-    C_L = K_P * fin_cos ** 2 * fin_sin + K_V * fin_cos * fin_sin ** 2
-
-    roll_accel = roll_coefficient * C_L * (velocity ** 2)
-    roll_rate += roll_accel * dt
 
 def sender():
     with open(rolldata_file) as accel_file:
         accel = itertools.imap(lambda line: float(line.split(',', 1)[0]), accel_file)
         with network.SendUDP(LOCALHOST, FC_LISTEN_PORT, from_port=ADIS_TX_PORT) as adis:
+            roll_rate = 0.0
             velocity = 0.0
             for seq, accel_sample in enumerate(accel):
                 start = time.time()
@@ -80,7 +66,15 @@ def sender():
                 })
 
                 velocity += accel_sample * dt
-                update_roll_rate()
+
+                K_P = 2.45
+                K_V = 3.21
+                fin_cos = math.cos(fin_angle)
+                fin_sin = math.sin(fin_angle)
+                C_L = K_P * fin_cos ** 2 * fin_sin + K_V * fin_cos * fin_sin ** 2
+
+                roll_accel = roll_coefficient * C_L * (velocity ** 2)
+                roll_rate += roll_accel * dt
 
                 wait_time = dt - (time.time() - start)
                 if wait_time > 0:
