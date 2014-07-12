@@ -33,5 +33,5 @@ for i, a in enumerate(accel):
         wait_time = (1/adis_sample_rate) - real_delay
         if wait_time > 0:
             time.sleep(wait_time)
-        udp.send_seq_message(messages.ADIS, i, data)
+        udp.send_seq_data(messages.ADIS, i, data)
         last_pack_sent = time.time()
